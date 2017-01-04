@@ -27,6 +27,7 @@ public class DetailPresenter implements DetailInterface.Presenter {
     public DetailPresenter(DetailFragment fragment){
         api = NetworkService.Initialise();
         this.fragment = fragment;
+        
     }
 
     @Override
