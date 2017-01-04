@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:drawable/screen_background_dark_transparent">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardElevation="12dp" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                app:srcCompat="@android:color/holo_orange_dark"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:id="@+id/detail_picture"
+                android:layout_margin="8dp" />
+
+            <TextView
+                android:text="A cool title."
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/detail_picture"
+                android:layout_toRightOf="@+id/detail_picture"
+                android:id="@+id/detail_title"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="4dp" />
+
+            <TextView
+                android:text="Here is a quick test to illustrate how there could be a large body of text here and how it would format to match requirements."
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/detail_picture"
+                android:layout_alignLeft="@+id/detail_picture"
+                android:layout_alignStart="@+id/detail_picture"
+                android:id="@+id/detail_text"
+                android:layout_alignRight="@+id/detail_title"
+                android:layout_alignEnd="@+id/detail_title" />
+
+            <TextView
+                android:text="Comments:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/detail_commentCount"
+                android:layout_below="@+id/detail_text"
+                android:layout_alignLeft="@+id/detail_text"
+                android:layout_alignStart="@+id/detail_text"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="4dp" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>
