@@ -20,8 +20,11 @@ public interface API {
     @GET("/posts/")
     Observable<List<Post>> getPosts();
 
-    @GET("/user/")
+    @GET("/users/")
     Observable<User> getUser(@Query("id") int id); //user's ID
+
+    @GET("/users/")
+    Observable<List<User>> getUsers();
 
     @GET("/comments/")
     Observable<List<Comment>> getComments(@Query("postId") int id); //The post's ID

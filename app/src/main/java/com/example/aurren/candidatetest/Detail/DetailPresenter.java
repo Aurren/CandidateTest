@@ -32,7 +32,7 @@ public class DetailPresenter implements DetailInterface.Presenter {
 
     @Override
     public void getCommentCount(int postID) {
-
+        Log.i("getting comments", " ");
         subscription.add(api.getComments(postID)
                 .onBackpressureBuffer()
                 .subscribeOn(Schedulers.newThread())
@@ -50,6 +50,7 @@ public class DetailPresenter implements DetailInterface.Presenter {
 
                     @Override
                     public void onNext(List<Comment> comments) {
+                        Log.i("Comments:", String.valueOf(comments.size()));
                         if (comments!=null){
                             fragment.setCommentCount(comments.size());
                         }

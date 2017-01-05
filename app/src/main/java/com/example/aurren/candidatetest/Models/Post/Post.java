@@ -1,30 +1,39 @@
-package com.example.aurren.candidatetest.Models.Post;
 
-/**
- * Created by Aurren on 03/01/2017.
- */
+
+        package com.example.aurren.candidatetest.Models.Post;
+
+        import com.google.gson.annotations.Expose;
+        import com.google.gson.annotations.SerializedName;
 
 public class Post {
 
-    int userID;
-    int postID;
-    String title;
-    String body;
+    @SerializedName("userId")
+    @Expose
+    private Integer userId;
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+    @SerializedName("title")
+    @Expose
+    private String title;
+    @SerializedName("body")
+    @Expose
+    private String body;
 
-    public int getUserID() {
-        return userID;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public int getPostID() {
-        return postID;
+    public Integer getId() {
+        return id;
     }
 
-    public void setPostID(int postID) {
-        this.postID = postID;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -42,4 +51,5 @@ public class Post {
     public void setBody(String body) {
         this.body = body;
     }
+
 }

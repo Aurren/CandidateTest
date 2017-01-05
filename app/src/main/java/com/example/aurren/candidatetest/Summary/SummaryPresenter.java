@@ -49,7 +49,6 @@ public class SummaryPresenter implements SummaryInterface.Presenter{
                 @Override
                 public void onNext(List<Post> posts) {
                     if ((posts!=null)&&(posts.size()!=0)){
-                        Log.i("Posts found", posts.toString());
                         fragment.setPosts(posts);
                     }
                     else{
@@ -60,32 +59,26 @@ public class SummaryPresenter implements SummaryInterface.Presenter{
     }
 
     @Override
-    public void getUser(int id) {
-        subscription.add(api.getUser(id)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.newThread())
-                .onBackpressureBuffer()
-                .subscribe(new Observer<User>() {
-                    @Override
-                    public void onCompleted() {
+    public void getUsers() {
+        subscription.add(api.getUsers()
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.newThread())
+            .onBackpressureBuffer()
+            .subscribe(new Observer<List<User>>() {
+                @Override
+                public void onCompleted() {
 
-                    }
+                }
 
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.e("GetUser Error", e.getMessage());
-                    }
+                @Override
+                public void onError(Throwable e) {
+                    Log.e("GetUsers Error", e.getMessage());
+                }
 
-                    @Override
-                    public void onNext(User user) {
-                        if (user!=null){
-                            Log.i("User found", user.toString());
-
-                        }
-                        else{
-                            Log.e("GetUser Error", "bad data");
-                        }
-                    }
-                }));
+                @Override
+                public void onNext(List<User> users) {
+                    fragment.setUsers(users);
+                }
+            }));
     }
 }

@@ -13,9 +13,11 @@ public interface SummaryInterface {
     interface Presenter{
         void init(SummaryFragment fragment);
         void getPosts();
-        void getUser(int id);
+        void getUsers();
     }
+
     interface View{
         void setPosts(List<Post> posts);
+        void setUsers(List<User> users);
     }
 }

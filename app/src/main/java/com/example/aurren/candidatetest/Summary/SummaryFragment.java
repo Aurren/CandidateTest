@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,8 @@ public class SummaryFragment extends Fragment implements SummaryInterface.View{
     RecyclerView.Adapter adapter;
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
+    List<Post> posts;
+    List<User> users;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,28 +59,36 @@ public class SummaryFragment extends Fragment implements SummaryInterface.View{
         recyclerView.setLayoutManager(layoutManager);
         presenter.init(this);
         presenter.getPosts();
+
     }
 
     @Override
     public void setPosts(List<Post> posts) {
-        adapter = new PostListAdapter(posts, getActivity(), this);
+        this.posts = posts;
+        presenter.getUsers();
+    }
+
+    @Override
+    public void setUsers(List<User> users) {
+        this.users = users;
+        adapter = new PostListAdapter(posts, getActivity(), this, users);
         recyclerView.setAdapter(adapter);
     }
 
-    public void CreateDetail(int userID, String text, int postID, String postTitle){
-        Fragment fragment = new DetailFragment();
-        Bundle data = new Bundle();
-        data.putInt("userID", userID);
-        data.putString("text", text);
-        data.putInt("postID", postID);
-        data.putString("title", postTitle);
-        fragment.setArguments(data);
-
+    public void CreateDetail(int userID, String text, int postID, String postTitle, String userIMGURL){
         android.app.FragmentManager fm = getFragmentManager();
         if (fm.getBackStackEntryCount()<=0){
+            Log.i("Creating detail"," ");
+            Fragment fragment = new DetailFragment();
+            Bundle data = new Bundle();
+            data.putInt("userID", userID);
+            data.putString("text", text);
+            data.putInt("postID", postID);
+            data.putString("title", postTitle);
+            data.putString("userIMGURL", userIMGURL);
+            fragment.setArguments(data);
 
-        android.app.FragmentTransaction ft = fm.beginTransaction();
-
+            android.app.FragmentTransaction ft = fm.beginTransaction();
             ft.add(R.id.fragment_holder, fragment);
             ft.addToBackStack("detail");
             ft.commit();
